@@ -5,3 +5,4 @@ Flask-RESTful==0.3.8
 numpy==1.19.1
 Keras==2.4.3
 keras-models==0.0.7
+gunicorn==19.9.0

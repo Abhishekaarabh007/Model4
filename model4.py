@@ -57,18 +57,13 @@ class Predict(Resource):
         mod4_attribs.append(request.args.get('mod4_attrib29',type=float))
 
 
-        data = np.array(list(data.values()))
+        data = np.array(mod4_attribs)
         data = np.reshape(data, newshape=(1, 29), order='C')
         yPred1 = mlp.predict_classes(data)
         output = yPred1[0]
-        return jsonify(int(output))
+        return { 'result': int(output) }
        
 
 if __name__ == '__main__':
-    import os
-    HOST = os.environ.get('SERVER_HOST', 'localhost')
-    try:
-        PORT = int(os.environ.get('SERVER_PORT', '5555'))
-    except ValueError:
-        PORT = 5555
-    app.run(HOST, PORT)
+    
+    app.run(debug=True)
